@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="to-do">
+        <div class="float">
+            <h1>ToDo App</h1>
+            <button class="button-toggle">New task</button>
+        </div>
+     
+        <form action="/new" method="POST" class="toggle">
+            <input type="text" name="todo" id="todo" placeholder="Add a toDo..."> 
+            <button  id="submit">Submit</button>
+        </form>
+        <div id="contenitore">
+            <% todo.forEach(todo => { %>
+                <div class="to-do-element"> 
+                    <div>
+                        <p> <%= todo.todo %>  </p>
+                    </div>
+                    
+                    <div class="task-buttons">
+                        <button class="done"><i class="far fa-check-circle"></i></button>
+                        <form action="/delete/<%=todo._id%>?_method=DELETE" method="POST" style="display: inline-block;">
+                            <button type="submit" class="delete-task"><i class="fas fa-trash"></i></button>
+                        </form>
+                        
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+        <% if(todo.length > 5) {%> 
+        <div class="delete">
+            <a href="/deleteTask">
+                <button>Delete All Tasks</button>
+            </a>
+        </div>
+        <% } %> 
+    </div>
+
+
+        <script src="app.js"></script>
+</body>
+</html>
